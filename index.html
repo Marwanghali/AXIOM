@@ -809,6 +809,12 @@ const globalKeyInput = document.getElementById('globalGeminiKey');
 const globalKeyStatus = document.getElementById('globalKeyStatus');
 
 function getApiKey(){ return globalKeyInput.value.trim(); }
+  // Remember the Gemini API key
+globalKeyInput.value = localStorage.getItem('axiom_saved_api_key') || '';
+
+globalKeyInput.addEventListener('input', () => {
+  localStorage.setItem('axiom_saved_api_key', globalKeyInput.value.trim());
+});
 
 globalKeyInput.addEventListener('input', ()=>{
   const has = getApiKey().length > 0;
